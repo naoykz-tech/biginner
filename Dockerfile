@@ -9,8 +9,7 @@ WORKDIR /workspace
 RUN npm install -g pnpm
 
 # Install dependencies
-RUN pnpm config set auto-install-peers true && \
-    pnpm install
+RUN pnpm install --frozen-lockfile
 
 EXPOSE 3000
 
