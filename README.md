@@ -1,71 +1,122 @@
-# Biginner
+# Biginner - Enterprise Website
 
-Docker環境を使用した開発環境のセットアップ
+TypeScript + Next.js で構築した企業サイトテンプレート
 
-## セットアップ手順
+## 🚀 クイックスタート
 
-### 前提条件
-- Docker がインストールされていること
-- Docker Compose がインストールされていること
-
-### 環境構築
-
-#### 方法1: Docker Compose を使う（推奨）
+### Docker Compose で起動
 
 ```bash
 # コンテナのビルド
 docker-compose build
 
-# コンテナの起動
-docker-compose up -d
-
-# コンテナに入る
-docker-compose exec app bash
-
-# コンテナの停止
-docker-compose down
+# 開発サーバーの起動
+docker-compose up
 ```
 
-#### 方法2: Docker コマンドで直接実行
+ブラウザで http://localhost:3000 にアクセスしてください。
+
+### ローカルでの起動（Node.js インストール済みの場合）
 
 ```bash
-# イメージのビルド
-docker build -t biginner:latest .
+# 依存関係のインストール
+pnpm install
 
-# コンテナの起動
-docker run -it -v $(pwd):/workspace --name biginner-dev biginner:latest
+# 開発サーバーの起動
+pnpm dev
+
+# ビルド
+pnpm build
+
+# 本番環境での実行
+pnpm start
 ```
 
-## よくあるコマンド
+## 📁 プロジェクト構成
+
+```
+biginner/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx       # ルートレイアウト
+│   │   └── page.tsx         # ホームページ
+│   └── styles/
+│       └── globals.css      # グローバルスタイル
+├── Dockerfile               # Docker 設定
+├── docker-compose.yml       # Docker Compose 設定
+├── package.json             # 依存関係管理
+├── tsconfig.json            # TypeScript 設定
+├── next.config.js           # Next.js 設定
+└── README.md               # このファイル
+```
+
+## 📝 スクリプトコマンド
 
 ```bash
-# コンテナ内に入る
-docker-compose exec app bash
+# 開発サーバーを起動
+pnpm dev
 
-# コンテナのログを確認
-docker-compose logs -f
+# ビルド（本番用）
+pnpm build
 
-# 実行中のコンテナを一覧表示
-docker-compose ps
+# 本番サーバーを起動
+pnpm start
 
-# コンテナを完全に削除
+# ESLint でコード検査
+pnpm lint
+
+# 型チェック
+pnpm type-check
+```
+
+## 🎨 カスタマイズ
+
+### ホームページを編集
+`src/app/page.tsx` でホームページのコンテンツを編集できます。
+
+### スタイルを編集
+`src/styles/globals.css` でグローバルスタイルを編集できます。
+
+### メタデータを変更
+`src/app/layout.tsx` でサイトタイトルなどのメタデータを編集できます。
+
+## 🛠 技術スタック
+
+- **Next.js 15** - React フレームワーク
+- **TypeScript** - 型安全な開発
+- **React 19** - UI ライブラリ
+- **Node.js 22** - ランタイム環境
+- **Docker** - コンテナ化
+
+## 🔧 トラブルシューティング
+
+### ポート 3000 が既に使用されている場合
+
+```bash
+# docker-compose.yml のポートマッピングを変更
+# ports:
+#   - "3001:3000"  # 3001 に変更
+```
+
+### 依存関係の再インストール
+
+```bash
+docker-compose exec app pnpm install
+```
+
+### キャッシュをクリア
+
+```bash
 docker-compose down -v
+docker-compose build --no-cache
 ```
 
-## カスタマイズ
+## 📚 参考リンク
 
-Docker環境をカスタマイズする場合:
+- [Next.js ドキュメント](https://nextjs.org/docs)
+- [TypeScript ドキュメント](https://www.typescriptlang.org/docs/)
+- [React ドキュメント](https://react.dev)
 
-1. **Dockerfile** - ベースイメージやインストールするツールを編集
-2. **docker-compose.yml** - ポート、ボリューム、環境変数を編集
-3. `.env` ファイルを作成して環境変数を設定
+## 📄 ライセンス
 
-## トラブルシューティング
-
-### ポートが既に使用されている場合
-`docker-compose.yml` でポートマッピングを変更してください。
-
-### パーミッションエラーが発生する場合
-```bash
-sudo chown -R $USER:$USER .
-```
+MIT License

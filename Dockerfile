@@ -1,14 +1,13 @@
-FROM ubuntu:22.04
+FROM node:22-alpine
 
-# Install basic dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    git \
-    vim \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
+# Install necessary tools
+RUN apk add --no-cache git curl vim
 
 WORKDIR /workspace
 
-# Default command
-CMD ["/bin/bash"]
+# Install pnpm globally
+RUN npm install -g pnpm
+
+EXPOSE 3000
+
+CMD ["pnpm", "dev"]
