@@ -120,3 +120,4 @@ docker compose build --no-cache
 ## 📄 ライセンス
 
 MIT License
+0603　なんとなくの流れだけは理解できた　今後は用語や仕組みを追いかけないと応用が一切できないことになる。
