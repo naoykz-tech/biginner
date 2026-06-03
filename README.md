@@ -8,10 +8,10 @@ TypeScript + Next.js で構築した企業サイトテンプレート
 
 ```bash
 # コンテナのビルド
-docker-compose build
+docker compose build
 
 # 開発サーバーの起動
-docker-compose up
+docker compose up
 ```
 
 ブラウザで http://localhost:3000 にアクセスしてください。
@@ -20,16 +20,16 @@ docker-compose up
 
 ```bash
 # 依存関係のインストール
-pnpm install
+npm install
 
 # 開発サーバーの起動
-pnpm dev
+npm run dev
 
 # ビルド
-pnpm build
+npm run build
 
 # 本番環境での実行
-pnpm start
+npm run start
 ```
 
 ## 📁 プロジェクト構成
@@ -54,19 +54,19 @@ biginner/
 
 ```bash
 # 開発サーバーを起動
-pnpm dev
+npm run dev
 
 # ビルド（本番用）
-pnpm build
+npm run build
 
 # 本番サーバーを起動
-pnpm start
+npm run start
 
 # ESLint でコード検査
-pnpm lint
+npm run lint
 
 # 型チェック
-pnpm type-check
+npm run type-check
 ```
 
 ## 🎨 カスタマイズ
@@ -101,14 +101,14 @@ pnpm type-check
 ### 依存関係の再インストール
 
 ```bash
-docker-compose exec app pnpm install
+docker compose exec app npm install
 ```
 
 ### キャッシュをクリア
 
 ```bash
-docker-compose down -v
-docker-compose build --no-cache
+docker compose down -v
+docker compose build --no-cache
 ```
 
 ## 📚 参考リンク

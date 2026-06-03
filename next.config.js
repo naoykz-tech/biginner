@@ -1,7 +1,7 @@
 const config = {
   eslint: {
-    dirs: ['src', 'pages', 'components', 'lib', 'utils'],
+    dirs: ['src'],
   },
 };
 
-export default config;
+module.exports = config;

@@ -10,7 +10,5 @@ services:
       - .:/workspace
       - /workspace/node_modules
     working_dir: /workspace
-    stdin_open: true
-    tty: true
     environment:
       - NODE_ENV=development
