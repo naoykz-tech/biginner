@@ -1,0 +1,16 @@
+import { LinkButton } from '@/components/ui/LinkButton';
+
+export function StartHereCard() {
+  return (
+    <article className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-6">
+      <p className="text-sm font-black uppercase tracking-wider text-emerald-700">Start Here</p>
+      <h2 className="mt-2 text-2xl font-black text-emerald-950">最初は issue #5 から始める</h2>
+      <p className="mt-3 leading-7 text-emerald-900">
+        まず `src/app/page.tsx` を開いて、トップページの文章を1つ変えます。コードと画面がつながっている感覚を掴んでから次へ進みます。
+      </p>
+      <LinkButton href="/tutorials/issue-5" variant="emerald" className="mt-5">
+        issue #5 の手順を見る
+      </LinkButton>
+    </article>
+  );
+}

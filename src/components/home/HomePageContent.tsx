@@ -1,0 +1,30 @@
+import { FeaturedTutorials } from '@/components/home/FeaturedTutorials';
+import { HomeCtaSection } from '@/components/home/HomeCtaSection';
+import { HomeHero } from '@/components/home/HomeHero';
+import { LearningPathCard } from '@/components/home/LearningPathCard';
+import { PhaseGrid } from '@/components/home/PhaseGrid';
+import { SiteHeader } from '@/components/layout/SiteHeader';
+import type { LearningIssue } from '@/types/learning';
+
+type HomePageContentProps = Readonly<{
+  featuredIssues: ReadonlyArray<LearningIssue>;
+  nextIssues: ReadonlyArray<LearningIssue>;
+  totalIssueCount: number;
+}>;
+
+export function HomePageContent({ featuredIssues, nextIssues, totalIssueCount }: HomePageContentProps) {
+  return (
+    <>
+      <SiteHeader />
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-16">
+          <HomeHero />
+          <LearningPathCard issues={nextIssues} totalIssueCount={totalIssueCount} />
+        </div>
+      </section>
+      <PhaseGrid />
+      <FeaturedTutorials issues={featuredIssues} />
+      <HomeCtaSection />
+    </>
+  );
+}

@@ -1,27 +1,6 @@
-export interface LearningIssue {
-  number: number;
-  originalIssue: string;
-  title: string;
-  category: 'GitHub' | 'Next.js' | 'UI' | 'React' | 'Quality' | 'Portfolio';
-  purpose: string;
-  tasks: string[];
-  done: string;
-  learningPoints: string[];
-}
+import type { BeginnerTutorial, LearningIssue, TutorialIssueNumber, TutorialNavigation } from '@/types/learning';
 
-export interface BeginnerTutorial {
-  goal: string;
-  files: string[];
-  createFiles: string[];
-  beforeStart: string[];
-  steps: string[];
-  hintCode: string;
-  checkInBrowser: string[];
-  commonMistakes: string[];
-  completionChecklist: string[];
-}
-
-export const learningIssues: LearningIssue[] = [
+export const learningIssues: ReadonlyArray<LearningIssue> = [
   {
     number: 3,
     originalIssue: '#3 Pull Requestを作成する',
@@ -164,11 +143,13 @@ export const learningIssues: LearningIssue[] = [
   },
 ];
 
-export const featuredIssues = learningIssues.filter((issue) =>
-  [5, 6, 7, 8, 9, 10, 11, 14].includes(issue.number),
+const featuredIssueNumbers: ReadonlyArray<number> = [5, 6, 7, 8, 9, 10, 11, 14];
+
+const featuredIssues: ReadonlyArray<LearningIssue> = learningIssues.filter((issue) =>
+  featuredIssueNumbers.includes(issue.number),
 );
 
-export const beginnerTutorials: Record<number, BeginnerTutorial> = {
+const beginnerTutorials: Readonly<Record<number, BeginnerTutorial | undefined>> = {
   5: {
     goal: 'トップページに表示されている文章を自分の言葉に変えて、保存するとブラウザ表示が変わることを体験する。',
     files: ['src/app/page.tsx'],
@@ -581,4 +562,43 @@ export default function Profile({ name, age, hobby }: ProfileProps) {
   },
 };
 
-export const tutorialIssueNumbers = Object.keys(beginnerTutorials).map(Number);
+export const tutorialIssueNumbers: ReadonlyArray<TutorialIssueNumber> = Object.keys(beginnerTutorials).map(Number);
+
+export function getFeaturedIssues(): ReadonlyArray<LearningIssue> {
+  return featuredIssues;
+}
+
+export function getTutorialIssues(): ReadonlyArray<LearningIssue> {
+  return learningIssues.filter((issue) => tutorialIssueNumbers.includes(issue.number));
+}
+
+export function getIssueByNumber(issueNumber: TutorialIssueNumber): LearningIssue | undefined {
+  return learningIssues.find((issue) => issue.number === issueNumber);
+}
+
+export function getTutorialByIssueNumber(issueNumber: TutorialIssueNumber): BeginnerTutorial | undefined {
+  return beginnerTutorials[issueNumber];
+}
+
+export function parseIssueSlug(issueSlug: string): TutorialIssueNumber | null {
+  const match = /^issue-(\d+)$/.exec(issueSlug);
+  const issueNumber = match?.[1];
+
+  return issueNumber ? Number(issueNumber) : null;
+}
+
+export function getTutorialNavigation(issueNumber: TutorialIssueNumber): TutorialNavigation {
+  const currentIndex = tutorialIssueNumbers.indexOf(issueNumber);
+
+  if (currentIndex === -1) {
+    return {
+      previousIssue: null,
+      nextIssue: null,
+    };
+  }
+
+  return {
+    previousIssue: tutorialIssueNumbers[currentIndex - 1] ?? null,
+    nextIssue: tutorialIssueNumbers[currentIndex + 1] ?? null,
+  };
+}
