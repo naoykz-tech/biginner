@@ -2,7 +2,7 @@
 
 Biginner は、GitHub issue を小さな学習課題として進めながら Next.js、React、TypeScript、GitHub の基本を学ぶためのサイトです。
 
-トップページ、ロードマップ、チュートリアル一覧、個別チュートリアル、ポートフォリオ向けページを持つ Next.js アプリとして構成されています。
+トップページ、ロードマップ、チュートリアル一覧、個別チュートリアル、企業サイト風の完成見本、ポートフォリオ向けページを持つ Next.js アプリとして構成されています。
 
 ## 技術スタック
 
@@ -22,6 +22,7 @@ Biginner は、GitHub issue を小さな学習課題として進めながら Nex
 | `/tutorials` | チュートリアル一覧 |
 | `/tutorials/issue-{number}` | issue 番号に対応した個別チュートリアル |
 | `/tutorials/contact-form` | フォーム学習用ページ |
+| `/showcase` | チュートリアルで作る企業サイト風の完成見本 |
 | `/portfolio` | 成果物として見せるためのページ |
 
 ## ローカルで起動する
@@ -53,6 +54,8 @@ docker compose up
 ```
 
 ブラウザで http://localhost:3000 を開きます。
+
+`.next` は Docker Compose の `next_cache` volume に保存します。ホスト側のファイル所有者とコンテナ内の `node` ユーザーがずれても、Next.js の生成物で権限エラーが起きにくくするためです。
 
 依存関係をコンテナ内で入れ直す場合:
 
@@ -194,8 +197,6 @@ Docker 環境では以下を実行します。
 docker compose down -v
 docker compose build --no-cache
 ```
-
-`.next` は Docker Compose の `next_cache` volume に保存します。ホスト側のファイル所有者とコンテナ内の `node` ユーザーがずれても、Next.js の生成物で権限エラーが起きにくくするためです。
 
 ## 参考リンク
 
