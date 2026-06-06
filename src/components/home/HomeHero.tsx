@@ -24,8 +24,8 @@ export function HomeHero() {
         <LinkButton href="/tutorials/issue-5" className="px-5">
           最初の課題を始める
         </LinkButton>
-        <LinkButton href="/tutorials" variant="secondary" className="px-5">
-          課題一覧を見る
+        <LinkButton href="/showcase" variant="secondary" className="px-5">
+          完成見本を見る
         </LinkButton>
       </div>
     </div>

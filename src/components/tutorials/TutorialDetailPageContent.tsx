@@ -180,6 +180,9 @@ export function TutorialDetailPageContent({ issue, navigation, tutorial }: Tutor
               </LinkButton>
             ) : null}
             {navigation.nextIssue ? <LinkButton href={`/tutorials/issue-${navigation.nextIssue}`}>次の課題へ</LinkButton> : null}
+            <LinkButton href="/showcase" variant="secondary">
+              完成形を確認する
+            </LinkButton>
           </div>
         </aside>
       </section>

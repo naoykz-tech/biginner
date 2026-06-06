@@ -8,6 +8,7 @@ type NavItem = Readonly<{
 const navItems: ReadonlyArray<NavItem> = [
   { href: '/roadmap', label: 'ロードマップ' },
   { href: '/tutorials', label: 'チュートリアル' },
+  { href: '/showcase', label: '成果物' },
   { href: '/portfolio', label: '公開準備' },
 ];
 

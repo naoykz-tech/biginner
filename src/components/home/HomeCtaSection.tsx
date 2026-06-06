@@ -11,11 +11,11 @@ export function HomeCtaSection() {
     <section className="mx-auto max-w-6xl px-5 py-12">
       <div className="grid gap-5 lg:grid-cols-2">
         <div className="rounded-lg bg-slate-950 p-7 text-white">
-          <p className="text-sm font-bold text-emerald-300">Practice</p>
-          <h2 className="mt-3 text-2xl font-black">フォームとバリデーションを重点練習</h2>
-          <p className="mt-4 leading-7 text-slate-300">useState、イベント処理、未入力チェック、メール形式チェックをまとめて確認できます。</p>
-          <LinkButton href="/tutorials/contact-form" variant="secondary" className="mt-6 px-5">
-            フォーム課題へ
+          <p className="text-sm font-bold text-emerald-300">Showcase</p>
+          <h2 className="mt-3 text-2xl font-black">最終的に作るサイトを見る</h2>
+          <p className="mt-4 leading-7 text-slate-300">自己紹介、学習した技術、フォームまでを1つにまとめた完成見本から、各課題の意味を確認できます。</p>
+          <LinkButton href="/showcase" variant="secondary" className="mt-6 px-5">
+            完成見本へ
           </LinkButton>
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-7">

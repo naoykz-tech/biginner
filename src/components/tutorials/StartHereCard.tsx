@@ -15,9 +15,14 @@ export function StartHereCard() {
       <p className="mt-3 leading-7 text-emerald-900">
         まず `src/app/page.tsx` を開いて、トップページの文章を1つ変えます。コードと画面がつながっている感覚を掴んでから次へ進みます。
       </p>
-      <LinkButton href="/tutorials/issue-5" variant="emerald" className="mt-5">
-        issue #5 の手順を見る
-      </LinkButton>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <LinkButton href="/tutorials/issue-5" variant="emerald">
+          issue #5 の手順を見る
+        </LinkButton>
+        <LinkButton href="/showcase" variant="secondary">
+          完成見本を見る
+        </LinkButton>
+      </div>
     </article>
   );
 }

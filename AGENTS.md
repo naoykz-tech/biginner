@@ -1,42 +1,50 @@
-# Biginner Agent Guidelines
+# Biginner エージェントガイドライン
 
-## Design Principles
+## 設計原則
 
-- Keep `src/app/**/page.tsx` thin. Pages should compose sections, export metadata, and handle route parameters only.
-- Put reusable UI in `src/components/**`; put domain data and queries in `src/data/**`; put shared types in `src/types/**`.
-- Prefer small components with one reason to change. Split when a component mixes layout, data selection, and repeated item rendering.
-- Preserve existing routes and visible content unless the task explicitly asks for a UX change.
+- `src/app/**/page.tsx` は薄く保ってください。ページではセクションの合成、metadata の export、route parameter の処理だけを行ってください。
+- 再利用できるUIは `src/components/**`、ドメインデータと取得・検索関数は `src/data/**`、共有型は `src/types/**` に置いてください。
+- 変更理由が1つに収まる小さなコンポーネントを優先してください。レイアウト、データ選択、繰り返し表示が混ざる場合は分割してください。
+- タスクで明示的にUX変更を求められていない限り、既存のルートと表示内容を維持してください。
 
-## TypeScript Rules
+## TypeScript ルール
 
-- Use `strict` TypeScript as the baseline. Do not use `any`.
-- Prefer `ReadonlyArray<T>` for arrays passed through props, domain data, and derived collections.
-- Mark object properties as `readonly` for domain types and component props when mutation is not required.
-- Use `import type` for type-only imports.
-- Let TypeScript infer obvious local primitive types. Add explicit types for exported data, props, route params, and public functions.
+- `strict` TypeScript を前提にしてください。`any` は使わないでください。
+- props、ドメインデータ、派生コレクションとして渡す配列には `ReadonlyArray<T>` を優先してください。
+- ドメイン型やコンポーネント props では、変更が不要なオブジェクトプロパティに `readonly` を付けてください。
+- 型だけの import には `import type` を使ってください。
+- 明らかなローカルのプリミティブ型は TypeScript に推論させてください。export するデータ、props、route params、public function には明示的な型を付けてください。
 
-## Frontend Rules
+## フロントエンドルール
 
-- Route files own routing concerns; components own presentation.
-- Data lookup and transformation should live behind named functions, not inline inside JSX.
-- Use stable keys from domain data. Do not use array indexes as keys unless the list is static and no better identifier exists.
-- Keep Tailwind classes readable and avoid redundant utilities such as `h-8 w-8` when `size-8` is equivalent.
+- route ファイルはルーティングの責務だけを持ち、コンポーネントは表示の責務を持ってください。
+- データ検索や変換は JSX 内に直接書かず、名前付き関数の中に置いてください。
+- key にはドメインデータ由来の安定した値を使ってください。静的リストで他に適切な識別子がない場合を除き、配列 index を key に使わないでください。
+- Tailwind class は読みやすく保ち、`size-8` で表せる場合の `h-8 w-8` のような冗長な utility は避けてください。
 
-## Documentation Rules
+## 成果物ページルール
 
-- Use TSDoc comments for exported shared surfaces: domain types and interfaces in `src/types/**`, domain data and query/helper functions in `src/data/**`, and reusable components in `src/components/**`.
-- Keep route files thin and do not add comments only to satisfy documentation style in `src/app/**/page.tsx`.
-- Comments must explain intent, domain meaning, constraints, or non-obvious behavior. Do not write comments that only restate the symbol name, TypeScript type, or JSX text.
-- For exported functions in `src/data/**`, include `@param` and `@returns`. Document `null` and `undefined` cases explicitly.
-- For exported domain interfaces, document important properties when the field meaning, ordering, URL relationship, or display contract is not obvious from the property name.
-- For exported components, prefer a summary plus `@remarks` when the component owns data assumptions, composition responsibility, or reuse constraints. Do not list every prop unless that contract is non-obvious.
-- Let TypeScript carry type information. Do not write JSDoc-style type annotations such as `@param {string}` in TSDoc.
-- Do not comment obvious local variables, straightforward Tailwind classes, or markup whose meaning is already clear from the surrounding component.
-- Prefer concise Japanese comments for project-specific learning content unless the surrounding code is already clearly English-only.
+- `/showcase` は初心者が最終的に作る完成見本サイトです。ホームページの説明ページではなく、完成した1つのホームページとして見える状態を優先してください。
+- `ShowcasePageContent.tsx` は薄い合成コンポーネントに保ってください。大きな表示区画は `src/components/showcase/sections/**`、繰り返し表示や小さな部品は `src/components/showcase/parts/**` に分けてください。
+- `src/components/showcase/**` 直下にファイルを増やしすぎないでください。機能が増える場合は、意味のあるサブディレクトリを作って整理してください。
+- 成果物ページの表示文言は日本語を基本にしてください。`Next.js`、`React`、`TypeScript` のような技術名や避けられない固有名詞だけ英語表記を許容します。
+- 成果物ページ下部には、完成したホームページから関連チュートリアルへ戻れる学習導線を残してください。
 
-## Verification
+## ドキュメントルール
 
-Run these checks after meaningful code changes:
+- export される共有 surface には TSDoc コメントを書いてください。対象は `src/types/**` のドメイン型・interface、`src/data/**` のドメインデータ・query/helper 関数、`src/components/**` の再利用コンポーネントです。
+- route ファイルは薄く保ち、`src/app/**/page.tsx` にドキュメント形式を満たすためだけのコメントを追加しないでください。
+- コメントでは意図、ドメイン上の意味、制約、分かりにくい挙動を説明してください。シンボル名、TypeScript 型、JSX テキストを言い換えるだけのコメントは書かないでください。
+- `src/data/**` の export 関数には `@param` と `@returns` を含めてください。`null` や `undefined` になる場合は明示的に説明してください。
+- export されるドメイン interface では、プロパティ名だけでは意味、順序、URL との関係、表示上の契約が分かりにくい重要プロパティを説明してください。
+- export されるコンポーネントでは、概要に加えて、データ前提、合成責務、再利用上の制約がある場合は `@remarks` を使ってください。prop の契約が分かりにくい場合を除き、すべての prop を列挙しないでください。
+- 型情報は TypeScript に担わせてください。TSDoc に `@param {string}` のような JSDoc 形式の型注釈を書かないでください。
+- 明らかなローカル変数、単純な Tailwind class、周囲のコンポーネントから意味が分かる markup にはコメントを書かないでください。
+- 周囲のコードが明確に英語のみで書かれている場合を除き、プロジェクト固有の学習内容には簡潔な日本語コメントを優先してください。
+
+## 検証
+
+意味のあるコード変更後は、次のチェックを実行してください。
 
 ```bash
 npm run type-check
@@ -45,4 +53,4 @@ npm run build
 npx -y react-doctor@latest . --verbose
 ```
 
-If a check cannot run, report the reason and the remaining risk.
+チェックを実行できない場合は、その理由と残るリスクを報告してください。

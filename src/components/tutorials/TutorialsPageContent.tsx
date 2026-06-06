@@ -28,8 +28,8 @@ export function TutorialsPageContent({ items }: TutorialsPageContentProps) {
         title="チュートリアル課題"
         description="何も触ったことがない人でも進められるように、各課題で「開くファイル」「作るファイル」「確認するURL」まで案内します。"
         action={
-          <LinkButton href="/roadmap" variant="secondary">
-            全ロードマップを見る
+          <LinkButton href="/showcase" variant="secondary">
+            完成見本を見る
           </LinkButton>
         }
       />
