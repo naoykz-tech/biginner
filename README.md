@@ -1,124 +1,164 @@
-# Biginner - Enterprise Website
+# Biginner
 
-TypeScript + Next.js で構築した企業サイトテンプレート
+Biginner は、GitHub issue を小さな学習課題として進めながら Next.js、React、TypeScript、GitHub の基本を学ぶためのサイトです。
 
-## 🚀 クイックスタート
+トップページ、ロードマップ、チュートリアル一覧、個別チュートリアル、ポートフォリオ向けページを持つ Next.js アプリとして構成されています。
 
-### Docker Compose で起動
+## 技術スタック
+
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Node.js 22
+- Docker / Docker Compose
+
+## 主なページ
+
+| パス | 内容 |
+| --- | --- |
+| `/` | 学習ロードマップの概要と注目チュートリアル |
+| `/roadmap` | 学習課題の流れ |
+| `/tutorials` | チュートリアル一覧 |
+| `/tutorials/issue-{number}` | issue 番号に対応した個別チュートリアル |
+| `/tutorials/contact-form` | フォーム学習用ページ |
+| `/portfolio` | 成果物として見せるためのページ |
+
+## ローカルで起動する
+
+Node.js 22 系を使います。
 
 ```bash
-# コンテナのビルド
-docker compose build
+npm install
+npm run dev
+```
 
-# 開発サーバーの起動
+ブラウザで http://localhost:3000 を開きます。
+
+本番ビルドを確認する場合:
+
+```bash
+npm run build
+npm run start
+```
+
+## Docker Compose で起動する
+
+```bash
+docker compose build
 docker compose up
 ```
 
-ブラウザで http://localhost:3000 にアクセスしてください。
+ブラウザで http://localhost:3000 を開きます。
 
-### ローカルでの起動（Node.js インストール済みの場合）
-
-```bash
-# 依存関係のインストール
-npm install
-
-# 開発サーバーの起動
-npm run dev
-
-# ビルド
-npm run build
-
-# 本番環境での実行
-npm run start
-```
-
-## 📁 プロジェクト構成
-
-```
-biginner/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx       # ルートレイアウト
-│   │   └── page.tsx         # ホームページ
-│   └── styles/
-│       └── globals.css      # グローバルスタイル
-├── Dockerfile               # Docker 設定
-├── docker-compose.yml       # Docker Compose 設定
-├── package.json             # 依存関係管理
-├── tsconfig.json            # TypeScript 設定
-├── next.config.js           # Next.js 設定
-└── README.md               # このファイル
-```
-
-## 📝 スクリプトコマンド
-
-```bash
-# 開発サーバーを起動
-npm run dev
-
-# ビルド（本番用）
-npm run build
-
-# 本番サーバーを起動
-npm run start
-
-# ESLint でコード検査
-npm run lint
-
-# 型チェック
-npm run type-check
-```
-
-## 🎨 カスタマイズ
-
-### ホームページを編集
-`src/app/page.tsx` でホームページのコンテンツを編集できます。
-
-### スタイルを編集
-`src/styles/globals.css` でグローバルスタイルを編集できます。
-
-### メタデータを変更
-`src/app/layout.tsx` でサイトタイトルなどのメタデータを編集できます。
-
-## 🛠 技術スタック
-
-- **Next.js 15** - React フレームワーク
-- **TypeScript** - 型安全な開発
-- **React 19** - UI ライブラリ
-- **Node.js 22** - ランタイム環境
-- **Docker** - コンテナ化
-
-## 🔧 トラブルシューティング
-
-### ポート 3000 が既に使用されている場合
-
-```bash
-# docker-compose.yml のポートマッピングを変更
-# ports:
-#   - "3001:3000"  # 3001 に変更
-```
-
-### 依存関係の再インストール
+依存関係をコンテナ内で入れ直す場合:
 
 ```bash
 docker compose exec app npm install
 ```
 
-### キャッシュをクリア
+キャッシュやボリュームを含めて作り直す場合:
 
 ```bash
 docker compose down -v
 docker compose build --no-cache
 ```
 
-## 📚 参考リンク
+## プロジェクト構成
 
-- [Next.js ドキュメント](https://nextjs.org/docs)
-- [TypeScript ドキュメント](https://www.typescriptlang.org/docs/)
-- [React ドキュメント](https://react.dev)
+```text
+biginner/
+├── src/
+│   ├── app/             # Next.js App Router のルート
+│   ├── components/      # 再利用する UI コンポーネント
+│   ├── data/            # 学習課題データと取得関数
+│   ├── styles/          # グローバル CSS
+│   └── types/           # 共有型定義
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-## 📄 ライセンス
+## 開発ルールのメモ
+
+- `src/app/**/page.tsx` は薄く保ち、ルート固有の処理だけを書く。
+- 表示用の部品は `src/components/**` に分ける。
+- 学習課題のデータや検索関数は `src/data/**` に置く。
+- 共有する型は `src/types/**` に置く。
+- TypeScript では `any` を使わず、props やドメインデータは readonly を基本にする。
+
+詳しいルールは `AGENTS.md` を参照してください。
+
+## よく使うコマンド
+
+```bash
+npm run dev
+npm run type-check
+npm run lint
+npm run build
+npx -y react-doctor@latest . --verbose
+```
+
+## WSL で権限エラーが出る場合
+
+`sudo git clone`、`sudo npm install`、Docker 実行後の生成物などが原因で、リポジトリ内のファイルが `root` 所有になることがあります。
+
+通常ユーザーで編集や `npm install` ができない場合は、リポジトリのルートで所有者を現在のユーザーに戻してください。
+
+```bash
+sudo chown -R "$USER:$USER" .
+```
+
+確認:
+
+```bash
+ls -la
+```
+
+Git はファイル所有者を管理しないため、この権限問題は push / pull では共有されません。別の環境で同じ症状が出た場合は、その環境の作業ディレクトリの所有者を確認してください。
+
+## トラブルシューティング
+
+### ポート 3000 がすでに使われている
+
+`docker-compose.yml` のポート設定を変更します。
+
+```yaml
+ports:
+  - "3001:3000"
+```
+
+この場合は http://localhost:3001 を開きます。
+
+### 依存関係を入れ直したい
+
+ローカル環境では以下を実行します。
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+Docker 環境では以下を実行します。
+
+```bash
+docker compose down -v
+docker compose build --no-cache
+```
+
+## 参考リンク
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+
+## 学習メモ
+
+- 0603 なんとなくの流れだけは理解できた 今後は用語や仕組みを追いかけないと応用が一切できないことになる。
+- 0606 プルリクエストを作成しただけ
+
+## ライセンス
 
 MIT License
-0603　なんとなくの流れだけは理解できた　今後は用語や仕組みを追いかけないと応用が一切できないことになる。
-0606　プルリクエストを作成しただけ
