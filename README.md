@@ -69,7 +69,27 @@ docker compose build --no-cache
 
 ## Dev Containers で開発する
 
-VS Code の Dev Containers を使う場合は、リポジトリを開いて「Reopen in Container」を実行します。コンテナ内では Node.js 22 と npm の依存関係がセットアップされ、`node` ユーザーで作業します。
+Dev Container は、VS Code などのエディタから Docker コンテナ内の開発環境を直接開く仕組みです。プロジェクトごとに Node.js や npm、拡張機能、作業ユーザーをそろえられるため、参加者ごとのローカル環境差を減らせます。
+
+このプロジェクトでは Dev Container で開発する方法を推奨します。理由は、`.devcontainer/devcontainer.json` で Node.js 22、作業ディレクトリ `/workspace`、作業ユーザー `node` を前提にしているためです。
+
+VS Code の Dev Containers を使う場合は、リポジトリを開いて「Reopen in Container」を実行します。コンテナ内では依存関係がセットアップされ、`node` ユーザーで作業します。
+
+```bash
+npm run dev
+```
+
+ブラウザで http://localhost:3000 を開きます。
+
+作業方法の使い分け:
+
+| 方法 | 用途 |
+| --- | --- |
+| Dev Container | 推奨。編集、依存関係のインストール、開発サーバー起動まで同じ環境で行う |
+| Docker Compose | エディタはローカルのまま、アプリだけコンテナで起動したい場合に使う |
+| ローカルの Node.js | Docker を使わずにすぐ確認したい場合に使う |
+
+権限エラーを避けるため、Dev Container や Docker Compose を使う場合は、コンテナ外の root シェルで `sudo npm install` や `sudo npm run build` を実行しないでください。
 
 ## プロジェクト構成
 
