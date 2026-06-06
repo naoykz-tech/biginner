@@ -1,32 +1,36 @@
-import { AboutSection } from '@/components/showcase/sections/AboutSection';
 import { ContactPreview } from '@/components/showcase/sections/ContactPreview';
 import { LearningStepsSection } from '@/components/showcase/sections/LearningStepsSection';
+import { NewsSection } from '@/components/showcase/sections/NewsSection';
+import { ProjectsSection } from '@/components/showcase/sections/ProjectsSection';
+import { ReasonsSection } from '@/components/showcase/sections/ReasonsSection';
+import { ServicesSection } from '@/components/showcase/sections/ServicesSection';
 import { ShowcaseHeader } from '@/components/showcase/sections/ShowcaseHeader';
 import { ShowcaseHero } from '@/components/showcase/sections/ShowcaseHero';
-import { SkillsSection } from '@/components/showcase/sections/SkillsSection';
-import { WorksSection } from '@/components/showcase/sections/WorksSection';
-import type { ShowcaseFeature, ShowcaseLearningLink, ShowcaseSection } from '@/types/showcase';
+import type { ShowcaseLearningLink, ShowcaseNewsItem, ShowcaseProject, ShowcaseReason, ShowcaseService } from '@/types/showcase';
 
 type ShowcasePageContentProps = Readonly<{
-  sections: ReadonlyArray<ShowcaseSection>;
-  features: ReadonlyArray<ShowcaseFeature>;
+  services: ReadonlyArray<ShowcaseService>;
+  reasons: ReadonlyArray<ShowcaseReason>;
+  projects: ReadonlyArray<ShowcaseProject>;
+  newsItems: ReadonlyArray<ShowcaseNewsItem>;
   learningLinks: ReadonlyArray<ShowcaseLearningLink>;
 }>;
 
 /**
- * 初心者が最終的に作る完成見本を表示する成果物ページ本体です。
+ * 初心者が最終的に作る企業サイト完成見本を表示する成果物ページ本体です。
  *
  * @remarks
- * 完成サイトの見た目、含まれる機能、対応するチュートリアル課題を並べ、学習中のステップと最終成果を接続します。
+ * 架空工務店の企業サイトとして見える本文と、学習者が戻れる下部導線を合成します。
  */
-export function ShowcasePageContent({ sections, features, learningLinks }: ShowcasePageContentProps) {
+export function ShowcasePageContent({ services, reasons, projects, newsItems, learningLinks }: ShowcasePageContentProps) {
   return (
     <>
       <ShowcaseHeader />
       <ShowcaseHero />
-      <AboutSection />
-      <SkillsSection features={features} />
-      <WorksSection sections={sections} />
+      <ServicesSection services={services} />
+      <ReasonsSection reasons={reasons} />
+      <ProjectsSection projects={projects} />
+      <NewsSection newsItems={newsItems} />
       <ContactPreview />
       <LearningStepsSection learningLinks={learningLinks} />
     </>

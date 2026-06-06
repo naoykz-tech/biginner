@@ -1,25 +1,41 @@
 /**
- * 成果物ページ内で見せる完成サイトの主要セクションです。
- *
- * @remarks
- * `issueNumber` は、学習者がどの課題を終えるとそのセクションを作れるかを示す対応番号です。
+ * 架空工務店サイトで紹介する事業領域です。
  */
-export interface ShowcaseSection {
-  /** セクションの表示名です。完成見本ページの見出しとして使います。 */
+export interface ShowcaseService {
   readonly title: string;
-  /** 初心者が作る画面として、そのセクションが担う役割を説明します。 */
   readonly description: string;
-  /** 対応するチュートリアル課題のissue番号です。 */
-  readonly issueNumber: number;
+  readonly tag: string;
 }
 
 /**
- * 完成サイトに含まれる機能と、そこで身につく技術を結びつける表示データです。
+ * 架空工務店サイトで信頼感を伝える強みです。
  */
-export interface ShowcaseFeature {
+export interface ShowcaseReason {
   readonly title: string;
   readonly description: string;
-  readonly skills: ReadonlyArray<string>;
+  readonly label: string;
+}
+
+/**
+ * 架空工務店サイトで紹介する施工事例です。
+ *
+ * @remarks
+ * `tone` は画像素材を使わずに事例写真の雰囲気を作るための背景テーマです。
+ */
+export interface ShowcaseProject {
+  readonly title: string;
+  readonly location: string;
+  readonly description: string;
+  readonly tone: 'forest' | 'sunset' | 'stone';
+}
+
+/**
+ * 架空工務店サイトで掲載するお知らせです。
+ */
+export interface ShowcaseNewsItem {
+  readonly date: string;
+  readonly category: string;
+  readonly title: string;
 }
 
 /**
