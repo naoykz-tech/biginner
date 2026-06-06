@@ -1,5 +1,12 @@
 import { LinkButton } from '@/components/ui/LinkButton';
 
+/**
+ * 初めて訪れた学習者に最初の課題を案内するカードです。
+ *
+ * @remarks
+ * チュートリアル一覧の冒頭で使う固定導線です。
+ * 開始課題を変える場合は、リンク先と本文の両方を同時に更新してください。
+ */
 export function StartHereCard() {
   return (
     <article className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 p-6">

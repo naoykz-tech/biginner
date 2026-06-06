@@ -63,6 +63,13 @@ function ReleaseChecklist() {
   );
 }
 
+/**
+ * 学習成果を公開物として整えるためのページ本体です。
+ *
+ * @remarks
+ * README、公開前チェック、説明できる状態の観点を固定コンテンツとしてまとめます。
+ * 課題データには依存せず、ポートフォリオ準備の基準を提示する役割に絞ります。
+ */
 export function PortfolioPageContent() {
   return (
     <>

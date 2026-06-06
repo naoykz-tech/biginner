@@ -14,6 +14,12 @@ const variantClasses: Readonly<Record<NonNullable<LinkButtonProps['variant']>, s
   emerald: 'bg-emerald-800 text-white hover:bg-emerald-900',
 };
 
+/**
+ * ページ間導線をボタン風に表示するリンクコンポーネントです。
+ *
+ * @remarks
+ * Next.js の `Link` を使いながら、主要CTAと補助導線の見た目を `variant` で統一します。
+ */
 export function LinkButton({ children, href, variant = 'primary', className = '' }: LinkButtonProps) {
   const baseClassName = 'inline-flex items-center justify-center rounded-md px-4 py-3 text-sm font-bold';
 

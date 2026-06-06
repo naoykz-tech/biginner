@@ -1,5 +1,11 @@
 import { LinkButton } from '@/components/ui/LinkButton';
 
+/**
+ * 学習者に次の実践課題を提示するCTAセクションです。
+ *
+ * @remarks
+ * フォーム練習とポートフォリオ準備という、ロードマップ後半の行き先を固定で案内します。
+ */
 export function HomeCtaSection() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-12">

@@ -8,6 +8,13 @@ type SimplePageHeaderProps = Readonly<{
   action?: React.ReactNode;
 }>;
 
+/**
+ * 下層ページで共通して使うページ見出しです。
+ *
+ * @remarks
+ * 戻り導線、タイトル、説明文、任意の右側アクションを同じ構造で提供します。
+ * ルーティング先は親ページが決めるため、このコンポーネントは表示と導線の配置だけを担当します。
+ */
 export function SimplePageHeader({ eyebrowHref = '/', eyebrowLabel, title, description, action }: SimplePageHeaderProps) {
   return (
     <header className="border-b border-slate-200 bg-white">

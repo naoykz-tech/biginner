@@ -12,6 +12,13 @@ type HomePageContentProps = Readonly<{
   totalIssueCount: number;
 }>;
 
+/**
+ * トップページの主要セクションを組み立てるページ本体です。
+ *
+ * @remarks
+ * ルートページから取得済みの課題データだけを受け取り、ヒーロー、学習導線、注目チュートリアル、CTAの順に合成します。
+ * データ取得をここへ持ち込まず、表示構成だけを担当します。
+ */
 export function HomePageContent({ featuredIssues, nextIssues, totalIssueCount }: HomePageContentProps) {
   return (
     <>

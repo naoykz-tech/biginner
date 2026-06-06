@@ -18,6 +18,12 @@ type BadgeProps = Readonly<{
   className?: string;
 }>;
 
+/**
+ * 課題カテゴリを色付きラベルとして表示します。
+ *
+ * @remarks
+ * `LearningIssueCategory` の値ごとに配色を固定し、ロードマップやカード間でカテゴリの見え方を揃えます。
+ */
 export function CategoryBadge({ category }: CategoryBadgeProps) {
   return (
     <span className={`rounded-full px-3 py-1 text-xs font-black ring-1 ${categoryStyles[category]}`}>
@@ -26,6 +32,13 @@ export function CategoryBadge({ category }: CategoryBadgeProps) {
   );
 }
 
+/**
+ * 短いテキストを丸型バッジとして表示する汎用部品です。
+ *
+ * @remarks
+ * 学習ポイントなどカテゴリ以外のラベルに使います。
+ * カテゴリ表示には配色が固定された `CategoryBadge` を使ってください。
+ */
 export function Badge({ children, className = 'bg-slate-100 text-slate-700' }: BadgeProps) {
   return <span className={`rounded-full px-3 py-1 text-sm font-semibold ${className}`}>{children}</span>;
 }

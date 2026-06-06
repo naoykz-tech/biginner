@@ -1,5 +1,12 @@
 import type { BeginnerTutorial, LearningIssue, TutorialIssueNumber, TutorialNavigation } from '@/types/learning';
 
+/**
+ * ロードマップ全体の元データです。
+ *
+ * @remarks
+ * GitHub issue由来の学習課題を、学習者に見せる順番で保持します。
+ * トップページ、ロードマップ、チュートリアル一覧はいずれもこの配列を基準に課題を選びます。
+ */
 export const learningIssues: ReadonlyArray<LearningIssue> = [
   {
     number: 3,
@@ -562,24 +569,59 @@ export default function Profile({ name, age, hobby }: ProfileProps) {
   },
 };
 
+/**
+ * チュートリアル本文が存在する課題番号の一覧です。
+ *
+ * @remarks
+ * 静的ルート生成、チュートリアル一覧、前後ナビゲーションで共有します。
+ * `beginnerTutorials` のキーから生成するため、詳細ページを追加するときは本文データを増やすだけで反映されます。
+ */
 export const tutorialIssueNumbers: ReadonlyArray<TutorialIssueNumber> = Object.keys(beginnerTutorials).map(Number);
 
+/**
+ * トップページで最初に見せる代表的な課題を取得します。
+ *
+ * @returns トップページの注目チュートリアル枠に表示する課題一覧。
+ */
 export function getFeaturedIssues(): ReadonlyArray<LearningIssue> {
   return featuredIssues;
 }
 
+/**
+ * チュートリアル本文が用意されている課題だけを取得します。
+ *
+ * @returns `learningIssues` の表示順を保った、詳細ページを開ける課題一覧。
+ */
 export function getTutorialIssues(): ReadonlyArray<LearningIssue> {
   return learningIssues.filter((issue) => tutorialIssueNumbers.includes(issue.number));
 }
 
+/**
+ * issue番号からロードマップ上の課題データを取得します。
+ *
+ * @param issueNumber - 探したいGitHub issue番号。チュートリアル番号と同じ値を使います。
+ * @returns 対応する課題が存在する場合は課題データ、存在しない場合は `undefined`。
+ */
 export function getIssueByNumber(issueNumber: TutorialIssueNumber): LearningIssue | undefined {
   return learningIssues.find((issue) => issue.number === issueNumber);
 }
 
+/**
+ * issue番号から詳細ページ用のチュートリアル本文を取得します。
+ *
+ * @param issueNumber - チュートリアル本文を探すissue番号。
+ * @returns 本文データが存在する場合はチュートリアル、未対応の番号では `undefined`。
+ */
 export function getTutorialByIssueNumber(issueNumber: TutorialIssueNumber): BeginnerTutorial | undefined {
   return beginnerTutorials[issueNumber];
 }
 
+/**
+ * URL slugからチュートリアル課題番号を取り出します。
+ *
+ * @param issueSlug - `issue-5` のような詳細ページ用slug。
+ * @returns slugが期待形式なら課題番号、形式が違う場合は `null`。
+ */
 export function parseIssueSlug(issueSlug: string): TutorialIssueNumber | null {
   const match = /^issue-(\d+)$/.exec(issueSlug);
   const issueNumber = match?.[1];
@@ -587,6 +629,12 @@ export function parseIssueSlug(issueSlug: string): TutorialIssueNumber | null {
   return issueNumber ? Number(issueNumber) : null;
 }
 
+/**
+ * 現在の課題番号を基準に、チュートリアル間の前後リンクを計算します。
+ *
+ * @param issueNumber - 現在表示しているチュートリアル課題番号。
+ * @returns 前後の課題番号。対象番号が一覧にない場合や端の課題では、該当方向に `null` を入れます。
+ */
 export function getTutorialNavigation(issueNumber: TutorialIssueNumber): TutorialNavigation {
   const currentIndex = tutorialIssueNumbers.indexOf(issueNumber);
 

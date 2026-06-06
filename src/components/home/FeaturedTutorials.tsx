@@ -6,6 +6,12 @@ type FeaturedTutorialsProps = Readonly<{
   issues: ReadonlyArray<LearningIssue>;
 }>;
 
+/**
+ * トップページで強調するチュートリアル課題の一覧です。
+ *
+ * @remarks
+ * 親から渡された課題だけを表示し、どの課題を注目扱いにするかの選定はデータ層に委ねます。
+ */
 export function FeaturedTutorials({ issues }: FeaturedTutorialsProps) {
   return (
     <section className="border-y border-slate-200 bg-white">

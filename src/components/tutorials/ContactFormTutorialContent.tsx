@@ -165,6 +165,13 @@ function ConfirmationCard() {
   );
 }
 
+/**
+ * フォーム作成とバリデーション練習をまとめたチュートリアルページ本体です。
+ *
+ * @remarks
+ * issue #10 と #11 を横断する固定教材として、作業手順、ヒントコード、確認用プレビューを同じページにまとめます。
+ * 個別issueの詳細ページとは異なり、本文データを外から受け取らない自己完結型の教材です。
+ */
 export function ContactFormTutorialContent() {
   return (
     <>

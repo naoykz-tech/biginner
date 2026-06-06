@@ -14,6 +14,12 @@ const phases: ReadonlyArray<LearningPhase> = [
   { label: 'Portfolio', text: '成果物として公開する', count: 2 },
 ];
 
+/**
+ * 学習ロードマップの大きなフェーズをトップページで俯瞰させる固定グリッドです。
+ *
+ * @remarks
+ * フェーズ定義はこのコンポーネント内の静的データとして持ち、詳細な課題一覧はロードマップページへ逃がします。
+ */
 export function PhaseGrid() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-12">

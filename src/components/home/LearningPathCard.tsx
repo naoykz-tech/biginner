@@ -8,6 +8,13 @@ type LearningPathCardProps = Readonly<{
   totalIssueCount: number;
 }>;
 
+/**
+ * 次に取り組む課題を学習順に見せるカードです。
+ *
+ * @remarks
+ * `issues` はすでに表示対象に絞られ、学習順に並んでいる前提です。
+ * このコンポーネントは並び替えや選定を行わず、総課題数とあわせて導線化します。
+ */
 export function LearningPathCard({ issues, totalIssueCount }: LearningPathCardProps) {
   return (
     <div className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm">

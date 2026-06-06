@@ -57,6 +57,13 @@ function RoadmapItem({ issue }: RoadmapItemProps) {
   );
 }
 
+/**
+ * 全課題をロードマップとして表示するページ本体です。
+ *
+ * @remarks
+ * 親から渡された課題一覧を表示順のまま展開し、目的、作業項目、完了条件、学習ポイントを確認できる形にします。
+ * 課題の取得や並び替えはデータ層に任せます。
+ */
 export function RoadmapPageContent({ issues }: RoadmapPageContentProps) {
   return (
     <>

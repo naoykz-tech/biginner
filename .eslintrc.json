@@ -4,7 +4,12 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "import", "unused-imports"],
+  "settings": {
+    "jsdoc": {
+      "mode": "typescript"
+    }
+  },
+  "plugins": ["@typescript-eslint", "import", "jsdoc", "tsdoc", "unused-imports"],
   "rules": {
     "@typescript-eslint/array-type": [
       "error",
@@ -42,6 +47,14 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
+    "jsdoc/check-tag-names": [
+      "error",
+      {
+        "definedTags": ["remarks"]
+      }
+    ],
+    "jsdoc/require-description": "error",
+    "tsdoc/syntax": "error",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "error",
@@ -52,5 +65,43 @@
         "varsIgnorePattern": "^_"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/components/**/*.{ts,tsx}", "src/data/**/*.{ts,tsx}", "src/types/**/*.{ts,tsx}"],
+      "rules": {
+        "jsdoc/require-jsdoc": [
+          "error",
+          {
+            "contexts": ["ExportNamedDeclaration"],
+            "enableFixer": false,
+            "require": {
+              "FunctionDeclaration": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/data/**/*.{ts,tsx}"],
+      "rules": {
+        "jsdoc/check-param-names": "error",
+        "jsdoc/require-hyphen-before-param-description": "error",
+        "jsdoc/require-param": [
+          "error",
+          {
+            "contexts": ["ExportNamedDeclaration > FunctionDeclaration"]
+          }
+        ],
+        "jsdoc/require-param-description": "error",
+        "jsdoc/require-returns": [
+          "error",
+          {
+            "contexts": ["ExportNamedDeclaration > FunctionDeclaration"]
+          }
+        ],
+        "jsdoc/require-returns-description": "error"
+      }
+    }
+  ]
 }

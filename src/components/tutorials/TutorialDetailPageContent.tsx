@@ -80,6 +80,13 @@ function StepList({ steps }: StepListProps) {
   );
 }
 
+/**
+ * ひとつの課題のチュートリアル詳細を表示するページ本体です。
+ *
+ * @remarks
+ * 課題情報、教材本文、前後ナビゲーションを受け取り、作業前確認、手順、補助コード、ブラウザ確認、つまずき例を構成します。
+ * データが存在しない場合の404判断はルート側で済ませ、このコンポーネントは表示に集中します。
+ */
 export function TutorialDetailPageContent({ issue, navigation, tutorial }: TutorialDetailPageContentProps) {
   return (
     <>

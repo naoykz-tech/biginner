@@ -1,5 +1,12 @@
 import { LinkButton } from '@/components/ui/LinkButton';
 
+/**
+ * 初学者向け学習サイトの目的と最初の導線を伝える導入領域です。
+ *
+ * @remarks
+ * トップページのファーストビューで使う固定コンテンツです。
+ * データ依存を持たせず、学習開始と課題一覧へのリンクだけを提供します。
+ */
 export function HomeHero() {
   return (
     <div>

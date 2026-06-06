@@ -22,6 +22,18 @@
 - Use stable keys from domain data. Do not use array indexes as keys unless the list is static and no better identifier exists.
 - Keep Tailwind classes readable and avoid redundant utilities such as `h-8 w-8` when `size-8` is equivalent.
 
+## Documentation Rules
+
+- Use TSDoc comments for exported shared surfaces: domain types and interfaces in `src/types/**`, domain data and query/helper functions in `src/data/**`, and reusable components in `src/components/**`.
+- Keep route files thin and do not add comments only to satisfy documentation style in `src/app/**/page.tsx`.
+- Comments must explain intent, domain meaning, constraints, or non-obvious behavior. Do not write comments that only restate the symbol name, TypeScript type, or JSX text.
+- For exported functions in `src/data/**`, include `@param` and `@returns`. Document `null` and `undefined` cases explicitly.
+- For exported domain interfaces, document important properties when the field meaning, ordering, URL relationship, or display contract is not obvious from the property name.
+- For exported components, prefer a summary plus `@remarks` when the component owns data assumptions, composition responsibility, or reuse constraints. Do not list every prop unless that contract is non-obvious.
+- Let TypeScript carry type information. Do not write JSDoc-style type annotations such as `@param {string}` in TSDoc.
+- Do not comment obvious local variables, straightforward Tailwind classes, or markup whose meaning is already clear from the surrounding component.
+- Prefer concise Japanese comments for project-specific learning content unless the surrounding code is already clearly English-only.
+
 ## Verification
 
 Run these checks after meaningful code changes:

@@ -13,6 +13,13 @@ type TutorialsPageContentProps = Readonly<{
   items: ReadonlyArray<TutorialListItem>;
 }>;
 
+/**
+ * チュートリアル一覧ページの本体です。
+ *
+ * @remarks
+ * ルート側で結合済みの課題データと本文データを受け取り、開始導線と課題カード群として表示します。
+ * 欠けたチュートリアルの除外は親側で済んでいる前提です。
+ */
 export function TutorialsPageContent({ items }: TutorialsPageContentProps) {
   return (
     <>

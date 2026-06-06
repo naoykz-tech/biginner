@@ -11,6 +11,13 @@ const navItems: ReadonlyArray<NavItem> = [
   { href: '/portfolio', label: '公開準備' },
 ];
 
+/**
+ * サイト全体で使う共通ヘッダーです。
+ *
+ * @remarks
+ * 主要ページへの固定ナビゲーションを提供します。
+ * ナビゲーション項目は静的に管理し、ページ固有の状態やデータ取得は持ちません。
+ */
 export function SiteHeader() {
   return (
     <header className="border-b border-slate-200 bg-white/90 backdrop-blur">

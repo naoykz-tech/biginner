@@ -7,6 +7,13 @@ type TutorialCardProps = Readonly<{
   tutorial: BeginnerTutorial;
 }>;
 
+/**
+ * チュートリアル一覧に表示する課題カードです。
+ *
+ * @remarks
+ * 課題の目的、最初に開くファイル、学習ポイントを一覧向けに要約します。
+ * 詳細手順は持たず、詳細ページへの導線を主目的にします。
+ */
 export function TutorialCard({ issue, tutorial }: TutorialCardProps) {
   return (
     <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
