@@ -26,12 +26,15 @@ Biginner は、GitHub issue を小さな学習課題として進めながら Nex
 
 ## ローカルで起動する
 
-Node.js 22 系を使います。
+Node.js 22 系を使います。`nvm` を使っている場合は、リポジトリのルートで次のように実行します。
 
 ```bash
-npm install
+nvm use
+npm ci
 npm run dev
 ```
+
+`.nvmrc` と `.node-version` に Node.js 22 を指定しています。違うバージョンで `npm ci` すると失敗する場合があります。
 
 ブラウザで http://localhost:3000 を開きます。
 
@@ -54,7 +57,7 @@ docker compose up
 依存関係をコンテナ内で入れ直す場合:
 
 ```bash
-docker compose exec app npm install
+docker compose exec app npm ci
 ```
 
 キャッシュやボリュームを含めて作り直す場合:
@@ -63,6 +66,10 @@ docker compose exec app npm install
 docker compose down -v
 docker compose build --no-cache
 ```
+
+## Dev Containers で開発する
+
+VS Code の Dev Containers を使う場合は、リポジトリを開いて「Reopen in Container」を実行します。コンテナ内では Node.js 22 と npm の依存関係がセットアップされ、`node` ユーザーで作業します。
 
 ## プロジェクト構成
 
@@ -76,6 +83,10 @@ biginner/
 │   └── types/           # 共有型定義
 ├── Dockerfile
 ├── docker-compose.yml
+├── .devcontainer/       # VS Code Dev Containers 用設定
+├── .editorconfig        # エディタ共通の整形設定
+├── .gitattributes       # 改行コードとバイナリ扱いの設定
+├── .nvmrc               # Node.js バージョン指定
 ├── package.json
 ├── tsconfig.json
 └── README.md
@@ -98,6 +109,7 @@ npm run dev
 npm run type-check
 npm run lint
 npm run build
+npm run check
 npx -y react-doctor@latest . --verbose
 ```
 
@@ -105,7 +117,7 @@ npx -y react-doctor@latest . --verbose
 
 `sudo git clone`、`sudo npm install`、Docker 実行後の生成物などが原因で、リポジトリ内のファイルが `root` 所有になることがあります。
 
-通常ユーザーで編集や `npm install` ができない場合は、リポジトリのルートで所有者を現在のユーザーに戻してください。
+通常ユーザーで編集や `npm ci` ができない場合は、リポジトリのルートで所有者を現在のユーザーに戻してください。
 
 ```bash
 sudo chown -R "$USER:$USER" .
@@ -137,8 +149,8 @@ ports:
 ローカル環境では以下を実行します。
 
 ```bash
-rm -rf node_modules package-lock.json
-npm install
+rm -rf node_modules
+npm ci
 ```
 
 Docker 環境では以下を実行します。
