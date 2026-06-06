@@ -123,6 +123,21 @@ npx -y react-doctor@latest . --verbose
 sudo chown -R "$USER:$USER" .
 ```
 
+ただし、`root@...` のような root シェルで作業している場合は、`$USER` が `root` になります。その状態で上のコマンドを実行しても `root:root` のままになるため、権限エラーは直りません。
+
+Docker / Dev Container で起動する場合は、コンテナ内の `node` ユーザーに合わせて所有者を戻します。ホスト側に `node` ユーザー名が存在しない環境では、UID/GID の `1000:1000` を指定してください。
+
+```bash
+sudo chown -R 1000:1000 .
+rm -rf .next
+```
+
+Next.js の起動時に次のようなエラーが出る場合も、`.next` の所有者が実行ユーザーとずれている可能性があります。
+
+```text
+EACCES: permission denied, unlink '/workspace/.next/app-build-manifest.json'
+```
+
 確認:
 
 ```bash
@@ -159,6 +174,8 @@ Docker 環境では以下を実行します。
 docker compose down -v
 docker compose build --no-cache
 ```
+
+`.next` は Docker Compose の `next_cache` volume に保存します。ホスト側のファイル所有者とコンテナ内の `node` ユーザーがずれても、Next.js の生成物で権限エラーが起きにくくするためです。
 
 ## 参考リンク
 

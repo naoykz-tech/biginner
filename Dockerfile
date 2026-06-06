@@ -8,6 +8,9 @@ RUN chown node:node /workspace
 
 USER node
 
+# Keep framework-generated files writable when Docker Compose mounts .next as a volume.
+RUN mkdir -p .next
+
 # Copy package.json
 COPY --chown=node:node package.json package-lock.json ./
 
