@@ -1,3 +1,19 @@
 services:
   app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    init: true
+    volumes:
+      - ..:/workspace
+      - node_modules:/workspace/node_modules
+      - next_cache:/workspace/.next
+    working_dir: /workspace
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
     command: sleep infinity
+
+volumes:
+  node_modules:
+  next_cache:
