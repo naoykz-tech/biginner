@@ -7,7 +7,7 @@ export function HomeHero() {
         GitHub issueで進める初心者チュートリアル
       </p>
       <h1 className="max-w-3xl text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl">
-        Next.js、React、TypeScriptを小さな課題で学ぶ。
+        Next.js、React、TypeScriptを小さな課題で学ぶ。0609 少しずつだが動かし方がわかってきている。
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
         Biginnerは、どのファイルを開き、どこに何を書き、どのURLで確認するかまで案内する学習サイトです。
