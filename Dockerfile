@@ -15,11 +15,10 @@ RUN mkdir -p .next
 COPY --chown=node:node package.json package-lock.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application
 COPY --chown=node:node . .
-
 EXPOSE 3000
 
 CMD ["npm", "run", "dev"]
