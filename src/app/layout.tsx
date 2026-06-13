@@ -13,8 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <head />
-      <body className="antialiased">
+      <body>
         {children}
       </body>
     </html>
