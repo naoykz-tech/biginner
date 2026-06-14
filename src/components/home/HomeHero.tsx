@@ -21,11 +21,12 @@ export function HomeHero() {
         トップページの編集からフォーム、バリデーション、型定義までをissue単位で進めます。
       </p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <LinkButton href="/tutorials/issue-5" className="px-5">
+        <LinkButton href="/tutorials/issue-5" variant="metal" className="px-5">
           最初の課題を始める
         </LinkButton>
-        <LinkButton href="/showcase" variant="secondary" className="px-5">
-          完成見本を見る
+
+        <LinkButton href="/showcase" variant="metal" className="px-5">
+        完成見本を見る
         </LinkButton>
       </div>
     </div>
