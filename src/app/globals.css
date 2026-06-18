@@ -9,3 +9,19 @@ body {
   background: #f8fafc;
   color: #0f172a;
 }
+
+/* ← この下にボタンの共通デザインを書く */
+
+@layer base {
+  button {
+    @apply 
+      px-4 py-2 
+      text-white font-semibold 
+      rounded-lg 
+      bg-gradient-to-b from-blue-300 via-blue-500 to-blue-700
+      shadow-md 
+      hover:from-blue-400 hover:via-blue-600 hover:to-blue-800
+      active:scale-95
+      transition-all duration-200;
+  }
+}

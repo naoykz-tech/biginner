@@ -130,7 +130,7 @@ function PreviewForm() {
         <textarea className="mt-2 min-h-32 w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-slate-950 outline-none ring-emerald-500 focus:ring-2" placeholder="学習で試したいことを書く" />
       </label>
       <p className="rounded-md bg-rose-50 px-4 py-3 text-sm font-bold text-rose-700 ring-1 ring-rose-200">例: メールアドレスの形式を確認してください</p>
-      <button className="w-full rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white hover:bg-slate-800" type="button">
+      <button className="w-full rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-slate-900 hover:bg-slate-800" type="button">
         送信する
       </button>
     </form>
