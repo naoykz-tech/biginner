@@ -5,7 +5,7 @@ import { LearningPathCard } from '@/components/home/LearningPathCard';
 import { PhaseGrid } from '@/components/home/PhaseGrid';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import type { LearningIssue } from '@/types/learning';
-import Profile from './Profile copy';
+import Profile from './Profile';
 
 type HomePageContentProps = Readonly<{
   featuredIssues: ReadonlyArray<LearningIssue>;
