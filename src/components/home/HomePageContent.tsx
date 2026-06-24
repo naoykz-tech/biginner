@@ -5,7 +5,7 @@ import { LearningPathCard } from '@/components/home/LearningPathCard';
 import { PhaseGrid } from '@/components/home/PhaseGrid';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import type { LearningIssue } from '@/types/learning';
-import Profile from './Profile copy';
+import Profile from './Profile';
 
 type HomePageContentProps = Readonly<{
   featuredIssues: ReadonlyArray<LearningIssue>;
@@ -27,7 +27,12 @@ export function HomePageContent({ featuredIssues, nextIssues, totalIssueCount }:
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-16">
           <HomeHero />
-          <Profile />
+          <Profile
+            name="Nao"
+            learningTechnologies={['Next.js', 'React', 'TypeScript', 'Tailwind CSS']}
+            futureGoals="Webアプリを自分で作れるようになること"
+            hobbies={['読書', '映画鑑賞', '旅行']}
+          />
           <LearningPathCard issues={nextIssues} totalIssueCount={totalIssueCount} />
         </div>
       </section>
