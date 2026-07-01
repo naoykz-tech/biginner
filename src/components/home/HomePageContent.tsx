@@ -25,7 +25,7 @@ export function HomePageContent({ featuredIssues, nextIssues, totalIssueCount }:
     <>
       <SiteHeader />
       <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-16">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-16">
           <HomeHero />
           <Profile
             name="Nao"

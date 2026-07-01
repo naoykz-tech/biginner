@@ -20,7 +20,7 @@ export function FeaturedTutorials({ issues }: FeaturedTutorialsProps) {
           <p className="text-sm font-bold uppercase tracking-wider text-emerald-700">Tutorials</p>
           <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">ファイルを開くところから始める課題</h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {issues.map((issue) => (
             <article key={issue.number} className="rounded-lg border border-slate-200 bg-slate-50 p-5">
               <span className="text-sm font-black text-slate-500">Issue #{issue.number}</span>
