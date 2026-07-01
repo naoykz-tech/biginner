@@ -9,7 +9,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 export function HomeCtaSection() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-12">
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
         <div className="rounded-lg bg-slate-950 p-7 text-white">
           <p className="text-sm font-bold text-emerald-300">Showcase</p>
           <h2 className="mt-3 text-2xl font-black">最終的に作るサイトを見る</h2>
